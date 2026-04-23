@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DES Studios — cinematic dark + gold design system. All colors HSL. */
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 40 30% 92%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 40 30% 92%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 30% 92%;
+
+    --primary: 42 80% 55%;
+    --primary-foreground: 0 0% 6%;
+    --primary-glow: 45 95% 65%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 30% 92%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 8% 60%;
+
+    --accent: 42 80% 55%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 30% 92%;
+
+    --border: 42 30% 18%;
+    --input: 0 0% 12%;
+    --ring: 42 80% 55%;
+
+    --radius: 0.25rem;
+
+    /* Brand tokens */
+    --red: 0 100% 50%;
+    --red-bright: 0 100% 60%;
+    --red-deep: 0 100% 30%;
+    --ink: 0 0% 0%;
+    --ink-soft: 0 0% 5%;
+    --ink-elevated: 0 0% 8%;
+
+    /* Gradients */
+    --gradient-red: linear-gradient(135deg, hsl(var(--red)), hsl(var(--red-bright)));
+    --gradient-overlay: linear-gradient(180deg, hsl(0 0% 0% / 0.4) 0%, hsl(0 0% 0% / 0.9) 100%);
+    --gradient-hero: radial-gradient(ellipse at center, hsl(0 0% 0% / 0.2) 0%, hsl(0 0% 0% / 0.95) 85%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 3%) 100%);
+
+    /* Shadows */
+    --shadow-red: 0 10px 40px -10px hsl(var(--red) / 0.5);
+    --shadow-elevated: 0 20px 60px -20px hsl(0 0% 0% / 0.9);
+    --shadow-glow: 0 0 30px hsl(var(--red) / 0.4);
+
+    /* Transitions */
+    --ease-cinematic: cubic-bezier(0.2, 0, 0, 1);
+    --transition-base: all 0.5s var(--ease-cinematic);
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+  .font-display {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+  .font-serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  ::selection {
+    background: hsl(var(--red) / 0.4);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .text-red {
+    color: hsl(var(--red));
+  }
+  .text-gradient-red {
+    background: var(--gradient-red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bg-gradient-red {
+    background: var(--gradient-red);
+  }
+  .shadow-red {
+    box-shadow: var(--shadow-red);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .container-tight {
+    @apply mx-auto max-w-7xl px-6 lg:px-12;
+  }
+  .eyebrow {
+    @apply text-xs font-bold tracking-[0.3em] uppercase text-red;
+  }
+  .section-padding {
+    @apply py-24 md:py-40;
+  }
+  .hover-lift {
+    transition: var(--transition-base);
+  }
+  .hover-lift:hover {
+    transform: translateY(-8px);
+  }
+  .ornament-divider {
+    @apply flex items-center justify-center gap-4 my-8;
+  }
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    @apply h-[2px] w-16 bg-gradient-to-r from-transparent via-red to-transparent;
+  }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--red) / 0.6); }
+  50% { box-shadow: 0 0 0 20px hsl(var(--red) / 0); }
+}
+
+.animate-fade-up {
+  animation: fade-in-up 1.2s var(--ease-cinematic) both;
+}
+.animate-fade {
+  animation: fade-in 1.5s var(--ease-cinematic) both;
+}
+.animate-ken-burns {
+  animation: ken-burns 30s ease-out infinite alternate;
+}
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+.animate-pulse-red {
+  animation: pulse-red 2.5s infinite;
+}
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease-cinematic), transform 1.2s var(--ease-cinematic);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
